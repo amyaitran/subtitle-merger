@@ -1,7 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { SearchBar, Stepper, Paper, Container } from './components';
+import {
+  SearchBar,
+  Stepper,
+  Paper,
+  Container,
+  UploadButton,
+} from './components';
 
 function App() {
   return (
@@ -10,6 +16,7 @@ function App() {
       <SearchBar />
       <Stepper />
       <Paper />
+      <UploadButton />
     </div>
   );
 }
