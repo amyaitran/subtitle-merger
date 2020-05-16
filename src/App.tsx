@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {
-  SearchBar,
   Stepper,
-  // Paper,
-  Container,
   UploadButton,
   Grid,
 } from './components';
@@ -15,11 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <header className="App-header"></header> */}
-        {/* <SearchBar /> */}
         <Grid>{[<Stepper />, <Stepper />]}</Grid>
-        {/* <Stepper /> */}
-        {/* <Paper /> */}
         <UploadButton />
       </div>
     );
