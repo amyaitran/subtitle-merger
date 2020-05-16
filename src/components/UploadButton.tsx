@@ -3,7 +3,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 interface Props {
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -25,19 +25,15 @@ export default function UploadButtons(props: Props) {
   return (
     <div className={classes.root}>
       <input
-        accept="image/*"
+        accept=".srt"
         className={classes.input}
         id="contained-button-file"
         multiple
         type="file"
+        onChange={props.onChange}
       />
       <label htmlFor="contained-button-file">
-        <Button
-          variant="contained"
-          color="primary"
-          component="span"
-          onClick={props.onClick}
-        >
+        <Button variant="contained" color="primary" component="span">
           Upload
         </Button>
       </label>
