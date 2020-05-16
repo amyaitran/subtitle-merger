@@ -6,6 +6,7 @@ interface Props extends WithStyles<typeof styles> {
   children?: React.ReactNode;
   className?: string;
 }
+
 const styles = {
   root: {
     // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
