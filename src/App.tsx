@@ -5,15 +5,17 @@ import {
   Stepper,
   // Paper,
   Container,
-  UploadButton
+  UploadButton,
+  Grid,
 } from './components';
 
 function App() {
   return (
     <div className="App">
       {/* <header className="App-header"></header> */}
-      <SearchBar />
-      <Stepper />
+      {/* <SearchBar /> */}
+      <Grid>{[<Stepper />, <Stepper />]}</Grid>
+      {/* <Stepper /> */}
       {/* <Paper /> */}
       <UploadButton />
     </div>

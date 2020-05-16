@@ -3,7 +3,7 @@ import {
   makeStyles,
   Theme,
   createStyles,
-  createMuiTheme
+  createMuiTheme,
 } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -18,21 +18,21 @@ import SimpleContainer from './Container';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%'
+      width: '100%',
     },
     button: {
       marginTop: theme.spacing(1),
-      marginRight: theme.spacing(1)
+      marginRight: theme.spacing(1),
     },
     actionsContainer: {
-      marginBottom: theme.spacing(2)
+      marginBottom: theme.spacing(2),
     },
     resetContainer: {
-      padding: theme.spacing(3)
+      padding: theme.spacing(3),
     },
     label: {
-      color: 'red'
-    }
+      color: 'red',
+    },
   })
 );
 
@@ -60,11 +60,11 @@ export default function VerticalLinearStepper() {
   const steps = getSteps();
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   const handleReset = () => {
@@ -111,7 +111,6 @@ export default function VerticalLinearStepper() {
           </Button>
         </Paper>
       )}
-      )
     </div>
   );
 }
