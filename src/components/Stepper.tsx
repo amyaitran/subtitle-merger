@@ -1,5 +1,10 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  createMuiTheme
+} from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -7,42 +12,42 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import CustomStepLabel from './CustomStepLabel';
+import SimpleContainer from './Container';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '100%',
+      width: '100%'
     },
     button: {
       marginTop: theme.spacing(1),
-      marginRight: theme.spacing(1),
+      marginRight: theme.spacing(1)
     },
     actionsContainer: {
-      marginBottom: theme.spacing(2),
+      marginBottom: theme.spacing(2)
     },
     resetContainer: {
-      padding: theme.spacing(3),
+      padding: theme.spacing(3)
     },
+    label: {
+      color: 'red'
+    }
   })
 );
 
 function getSteps() {
-  return ['Select language', 'Select subtitle', 'Modify  Settings'];
+  return ['Upload', 'Synchronize', 'Modify subtitles'];
 }
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`;
+      return `Upload your subtitle file(s).`;
     case 1:
-      return 'An ad group contains one or more ads which target a shared set of keywords.';
+      return `Synchronize your subtitle file(s).`;
     case 2:
-      return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
+      return `Add color and/or adjust the alignment of your subtitle(s).`;
     default:
       return 'Unknown step';
   }
@@ -50,15 +55,16 @@ function getStepContent(step: number) {
 
 export default function VerticalLinearStepper() {
   const classes = useStyles();
+  console.log(classes);
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleReset = () => {
@@ -69,8 +75,9 @@ export default function VerticalLinearStepper() {
     <div className={classes.root}>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
+          <Step style={{ color: 'red' }} key={label}>
+            {/* <StepLabel className={classes.label}>{label}</StepLabel> */}
+            <CustomStepLabel>{label}</CustomStepLabel>
             <StepContent>
               <Typography>{getStepContent(index)}</Typography>
               <div className={classes.actionsContainer}>
@@ -104,6 +111,7 @@ export default function VerticalLinearStepper() {
           </Button>
         </Paper>
       )}
+      )
     </div>
   );
 }

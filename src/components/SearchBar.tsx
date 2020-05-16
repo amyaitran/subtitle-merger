@@ -4,13 +4,14 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CustomSearchBar from './CustomSearchBar';
 
 interface CountryType {
   name: string;
 }
 
 function sleep(delay = 0) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, delay);
   });
 }
@@ -28,18 +29,12 @@ export default function Asynchronous() {
     }
 
     (async () => {
-      const response = await fetch(
-        'https://country.register.gov.uk/records.json?page-size=5000'
-      );
+      const response = await fetch('http://localhost:8000/movies');
       await sleep(1e3); // For demo purposes.
-      const countries = await response.json();
+      const countries = (await response.json()) as CountryType[];
 
       if (active) {
-        setOptions(
-          Object.keys(countries).map(
-            (key) => countries[key].item[0]
-          ) as CountryType[]
-        );
+        setOptions(countries);
       }
     })();
 
@@ -66,10 +61,10 @@ export default function Asynchronous() {
         setOpen(false);
       }}
       getOptionSelected={(option, value) => option.name === value.name}
-      getOptionLabel={(option) => option.name}
+      getOptionLabel={option => option.name}
       options={options}
       loading={loading}
-      renderInput={(params) => (
+      renderInput={params => (
         <TextField
           {...params}
           label="Asynchronous"
@@ -83,7 +78,7 @@ export default function Asynchronous() {
                 ) : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
-            ),
+            )
           }}
         />
       )}
